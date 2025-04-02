@@ -1,0 +1,100 @@
+name: Deployment
+
+on:
+  push:
+    branches:
+      - rec
+      - main
+
+  workflow_dispatch:
+    inputs:
+      FORCE_APP_DEPLOY:
+        description: "Force deploy app"
+        required: false
+        default: "false"
+
+env:
+  # push => github.event.before
+  # pull_request => github.event.pull_request.base.sha
+  # workflow_dispatch => HEAD^
+  TURBO_RUN_FILTER: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.sha || github.event_name == 'push' && github.event.before || 'HEAD^' }}
+
+jobs:
+  checks:
+    name: Build
+    runs-on: ubuntu-latest
+    outputs:
+      changed-app: ${{ steps.changed-app.outputs.result }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+      - name: Changeset
+        id: changeset
+        # 1. We need the 'output' of a turbo dry-run to get a json with all affected packages of these run.
+        # 2. The multi line json string is transformed to a single line string.
+        # 3. The single line json string is set to an 'output' (or result) of this step.
+        run: |
+          content=`npx -y turbo build --filter="...[$TURBO_RUN_FILTER]" --dry-run=json`
+          echo 'result<<EOF' >> $GITHUB_OUTPUT
+          echo $content >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+          echo $content > $GITHUB_WORKSPACE/result.json
+      - name: Upload Result as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: changeset-result
+          path: ${{ github.workspace }}/result.json
+      - name: Changed app?
+        id: changed-app
+        if: ${{ contains(fromJSON(steps.changeset.outputs.result).packages, '@globolead/app') || github.event.inputs.FORCE_APP_DEPLOY == 'true' }}
+        run: |
+          echo "result=true" >> $GITHUB_OUTPUT
+
+  parse_branch_name:
+    name: Parse branch name
+    runs-on: ubuntu-latest
+    outputs:
+      branch: ${{ steps.parse_branch_name.outputs.branch }}
+    steps:
+      - name: Parse branch name
+        id: parse_branch_name
+        run: |
+          echo "branch=$(echo ${GITHUB_REF##*/} | tr -d -)" >> $GITHUB_OUTPUT
+
+  deploy_app:
+    name: Deploy app
+    runs-on: ubuntu-latest
+    needs:
+      - checks
+      - parse_branch_name
+    environment:
+      name: ${{ needs.parse_branch_name.outputs.branch }}
+    if: ${{ needs.checks.outputs.changed-app == 'true' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Deploy app
+        run: |
+          echo "### Deploying app 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "Found changes in app compared to this commit $TURBO_RUN_FILTER" >> $GITHUB_STEP_SUMMARY
+          cp apps/app/Dockerfile ./
+          curl https://cli-assets.heroku.com/install.sh | sh
+          heroku config -a $HEROKU_APP_NAME__APP -s > apps/app/.env
+          heroku stack:set container -a $HEROKU_APP_NAME__APP
+          heroku container:login
+          heroku container:push web -a $HEROKU_APP_NAME__APP --verbose
+          heroku labs:enable --app=$HEROKU_APP_NAME__APP runtime-new-layer-extract
+          heroku container:release web -a $HEROKU_APP_NAME__APP
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME__APP: ${{ vars.HEROKU_APP_NAME__APP }}
