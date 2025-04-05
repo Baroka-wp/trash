@@ -324,8 +324,8 @@ export default async function Profile({
       {
         profile: true,
       },
-      MyComponentDr
-    )
+      MyComponentDr,
+    ),
   );
 
   return (
@@ -354,7 +354,7 @@ export const MyComponentDr = dictionaryRequirements(
   {
     profilePage: true,
   },
-  OtherComponent
+  OtherComponent,
 );
 ```
 

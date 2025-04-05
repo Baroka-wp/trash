@@ -18,7 +18,7 @@ module.exports = {
 
       // Check if the file is a page or layout file
       const isTargetedFile = /(?:page|layout|dr)\.(ts|tsx|js|jsx)$/.test(
-        filename
+        filename,
       );
 
       // If it's the targeted file type and the first line is 'use client'

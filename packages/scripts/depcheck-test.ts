@@ -84,16 +84,18 @@ const main = async () => {
       }
       const hasUnused = unused.dependencies.length > 0
       const hasMissing = Object.keys(unused.missing).length > 0
-      message += `${hasUnused
+      message += `${
+        hasUnused
           ? `${chalk.red(pkg + " Unused dependencies:")}
   ${beautify(unused.dependencies)}`
           : ""
-        }
-  ${hasMissing
-          ? `${chalk.yellow(pkg + " Missing dependencies:")}
+      }
+  ${
+    hasMissing
+      ? `${chalk.yellow(pkg + " Missing dependencies:")}
   ${beautify(Object.keys(unused.missing))}`
-          : ""
-        }\n`
+      : ""
+  }\n`
       if (unused.dependencies.length > 0 || Object.keys(unused.missing).length > 0) {
         hasError = true
       }

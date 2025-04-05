@@ -15,7 +15,7 @@ module.exports = {
       const sourceCode = context.sourceCode;
 
       const importNodes = sourceCode.ast.body.filter(
-        (node) => node.type === "ImportDeclaration"
+        (node) => node.type === "ImportDeclaration",
       );
       //* Check if match /node_modules\/.*/
       importNodes.forEach((importNode) => {
