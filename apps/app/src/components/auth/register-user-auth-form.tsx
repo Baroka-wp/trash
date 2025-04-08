@@ -14,8 +14,8 @@ import { trpc } from "@/lib/trpc/client"
 import { cn } from "@/lib/utils"
 import { handleMutationError } from "@/lib/utils/client-utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { logger } from "@trash/lib"
 import { Button } from "@nextui-org/button"
+import { logger } from "@trash/lib"
 
 import TotpVerificationModal from "../profile/totp/totp-verification-modal"
 import FormField from "../ui/form"
@@ -168,7 +168,7 @@ export function RegisterUserAuthForm({ isMinimized, searchParams, locale, dictio
       <form
         onSubmit={form.handleSubmit(isMinimized ? onSubmitMinimized : onSubmit)}
         {...props}
-        className={cn("grid gap-2", props.className)}
+        className={cn("bg- grid gap-2", props.className)}
       >
         <div className="relative">
           <FormField
@@ -226,7 +226,7 @@ export function RegisterUserAuthForm({ isMinimized, searchParams, locale, dictio
             />
           </>
         )}
-        <Button type="submit" isLoading={isLoading} color="primary">
+        <Button type="submit" isLoading={isLoading} color="success" className="bg-green-500">
           {dictionary.signUp} {isMinimized && dictionary.withEmail}
         </Button>
       </form>

@@ -21,10 +21,10 @@ import { prisma } from "@/lib/prisma"
 import { redis } from "@/lib/redis"
 import { ApiError, ensureLoggedIn, generateRandomSecret, handleApiError } from "@/lib/utils/server-utils"
 import { apiInputFromSchema } from "@/types"
-import { logger } from "@trash/lib"
-import VerifyEmail from "@trash/transactional/emails/verify-email"
 import { Prisma } from "@prisma/client"
 import { render } from "@react-email/render"
+import { logger } from "@trash/lib"
+import VerifyEmail from "@trash/transactional/emails/verify-email"
 
 import { signUpResponseSchema } from "../me/schemas"
 

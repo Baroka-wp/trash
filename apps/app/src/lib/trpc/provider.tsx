@@ -4,9 +4,9 @@ import { useRouter } from "next/navigation"
 import { toast } from "react-toastify"
 
 import { AppRouter } from "@/api/_app"
-import { logger } from "@trash/lib"
 import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import { logger } from "@trash/lib"
 import { TRPCClientError, TRPCClientErrorLike } from "@trpc/client"
 
 import { TDictionary } from "../langs"

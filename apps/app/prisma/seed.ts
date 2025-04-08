@@ -5,8 +5,8 @@ import ora from "ora"
 import { rolesAsObject } from "@/constants"
 import { hash } from "@/lib/bcrypt"
 import { env } from "@/lib/env"
-import { logger, startTask } from "@trash/lib"
 import { PrismaClient } from "@prisma/client"
+import { logger, startTask } from "@trash/lib"
 
 const spinner = ora()
 

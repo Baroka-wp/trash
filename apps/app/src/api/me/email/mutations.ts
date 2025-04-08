@@ -11,9 +11,9 @@ import { sendMail } from "@/lib/mailer"
 import { prisma } from "@/lib/prisma"
 import { ApiError, handleApiError } from "@/lib/utils/server-utils"
 import { apiInputFromSchema } from "@/types"
+import { render } from "@react-email/render"
 import { logger } from "@trash/lib"
 import VerifyEmail from "@trash/transactional/emails/verify-email"
-import { render } from "@react-email/render"
 
 export const sendVerificationEmail = async ({ input }: apiInputFromSchema<typeof sendVerificationEmailSchema>) => {
   try {

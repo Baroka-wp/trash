@@ -2,8 +2,8 @@
 import { config } from "dotenv"
 import { z } from "zod"
 
-import { logger } from "@trash/lib"
 import { createEnv } from "@t3-oss/env-nextjs"
+import { logger } from "@trash/lib"
 
 if (!process.env.ENV) {
   config()
