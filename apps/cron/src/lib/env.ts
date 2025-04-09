@@ -2,8 +2,8 @@
 import { config } from "dotenv"
 import { z } from "zod"
 
-import { logger } from "@trash/lib"
 import { createEnv } from "@t3-oss/env-core"
+import { logger } from "@trash/lib"
 
 config()
 

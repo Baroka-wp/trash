@@ -38,6 +38,7 @@ export function middleware(request: NextRequest) {
       "/favicon.webp",
       "/robots.txt",
       "/sitemap.xml",
+      "/bg-login.webp",
       // Your other files in `public`
     ].includes(pathname) ||
     pathname.match(/^\/[a-z]+\/_next$/)

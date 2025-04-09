@@ -9,8 +9,8 @@ import { ApiError } from "@/lib/utils/server-utils"
 import { ensureLoggedIn, handleApiError } from "@/lib/utils/server-utils"
 import { apiInputFromSchema } from "@/types"
 import { DeleteObjectCommand } from "@aws-sdk/client-s3"
-import { logger } from "@trash/lib"
 import { Prisma } from "@prisma/client"
+import { logger } from "@trash/lib"
 
 export const updateUser = async ({ input, ctx: { session } }: apiInputFromSchema<typeof updateUserSchema>) => {
   ensureLoggedIn(session)

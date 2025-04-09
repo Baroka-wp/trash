@@ -38,52 +38,49 @@ export default async function SignInPage({
   //const session = await auth()
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 px-4">
-      {/*env.DISABLE_REGISTRATION !== true && (
-        <Button
-          as={Link}
-          href={authRoutes.signUp[0]}
-          className={cn("absolute right-4 top-4 md:right-8 md:top-8")}
-          variant="ghost"
-        >
-          {dictionary.toSignUp}
-        </Button>
-      )*/}
-      <div className="hidden h-full bg-muted lg:block"></div>
-      <div className="lg:p-8">
-        <div className="w-full max-w-md rounded-lg bg-white p-10 shadow-xl">
+    <main className="grid min-h-screen grid-cols-1 lg:grid-cols-2">
+      <button className="absolute right-4 top-4 rounded border p-2 text-gray-400 transition-colors duration-200 hover:bg-green-700 md:right-8 md:top-8">
+        <a href={authRoutes.signUp[0]}>{dictionary.toSignUp}</a>
+      </button>
+
+      <div className="hidden min-h-screen bg-green-500 bg-[url('/bg-login.webp')] bg-cover bg-center lg:block"></div>
+
+      <div className="flex flex-col items-center justify-center lg:p-8">
+        <div className="w-full max-w-md rounded-lg p-10 shadow-xl">
           <div className="space-y-4 text-center">
-            <h1 className="text-3xl font-bold text-gray-900">{dictionary.signInPage.loginToYourAccount}</h1>
-            <p className="text-lg text-gray-600">{dictionary.signInPage.enterDetails}</p>
+            <h1 className="text-2xl font-bold text-white">{dictionary.signInPage.loginToYourAccount}</h1>
+            <p className="text-lg text-gray-400">{dictionary.signInPage.enterDetails}</p>
           </div>
+
           <div className="mt-6 space-y-6">
             <LoginUserAuthForm dictionary={dictionary} searchParams={searchParams} />
-            <p className="text-center text-lg text-gray-700">
-              Nouveau sur ce site ?{" "}
-              <a
-                href={authRoutes.signUp[0]}
-                className="font-semibold text-blue-600 transition-colors duration-200 hover:text-blue-800"
-              >
-                {dictionary.toSignUp}
-              </a>
-            </p>
-            {/*env.DISABLE_REGISTRATION !== true && (
-              <>
-                <div className="relative">
-                  <div className="absolute inset-0 flex items-center">
-                    <span className="w-full border-t" />
-                  </div>
-                  <div className="relative flex justify-center text-xs uppercase">
-                    <span className="bg-background px-2 text-muted-foreground">{dictionary.auth.orContinueWith}</span>
-                  </div>
-                </div>
-                <AuthProviders dictionary={dictionary} searchParams={searchParams} session={session} />
-              </>
-            )*/}
+
+            <div className="flex flex-row items-center justify-center gap-x-1">
+              <div className="h-px w-16 bg-gray-600" />
+              <span className="text-sm uppercase text-gray-400">ou continuez avec</span>
+              <div className="h-px w-16 bg-gray-600" />
+            </div>
+
+            <button className="flex w-full items-center justify-center gap-x-2 rounded border border-green-700 bg-green-700 px-4 py-2 text-sm font-medium text-white shadow-sm">
+              <FcGoogle size={20} />
+              <span className="text-white"> Continuer avec Google</span>
+            </button>
           </div>
-          {/*<PrivacyAcceptance dictionary={dictionary} /> */}
+
+          <p className="mt-6 text-center text-sm text-gray-400">
+            En cliquant sur Inscription, vous acceptez nos{" "}
+            <a href="#" className="font-semibold text-green-500 hover:underline">
+              Conditions dutilisation
+            </a>{" "}
+            et notre{" "}
+            <a href="#" className="font-semibold text-green-500 hover:underline">
+              Politique de confidentialité
+            </a>
+            .
+          </p>
         </div>
       </div>
     </main>
   )
 }
+import { FcGoogle } from "react-icons/fc"

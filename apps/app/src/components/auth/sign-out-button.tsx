@@ -6,8 +6,8 @@ import { signOut, useSession } from "next-auth/react"
 
 import { authRoutes } from "@/constants/auth"
 import { trpc } from "@/lib/trpc/client"
-import { logger } from "@trash/lib"
 import { Button } from "@nextui-org/button"
+import { logger } from "@trash/lib"
 
 export default function SignoutButton({ children }: { children: React.ReactNode }) {
   const session = useSession()
