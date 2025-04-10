@@ -9,8 +9,7 @@ import Profile from "./profile"
 const Sidebar = () => {
   const pathname = usePathname()
 
-  
-  const lang = pathname.split("/")[1] || "fr" 
+  const lang = pathname.split("/")[1] || "fr"
 
   const navItems = [
     { href: `/${lang}/dashboard`, label: "Tableau de bord", icon: <FiHome size={18} /> },
