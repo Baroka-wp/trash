@@ -48,7 +48,7 @@ export default function CreerDossierPage() {
         throw new Error("Erreur lors de la création du dossier")
       }
 
-      const nouveauDossier = await response.json()
+      const _nouveauDossier = await response.json()
       setSuccessMessage("Dossier créé avec succès!")
 
       // Rediriger vers la page de liste des dossiers
