@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Edit, Eye, Trash2 } from "lucide-react"
@@ -125,7 +123,7 @@ export default function DossierListPage() {
             <thead className="bg-gray-100">
               <tr className="text-left text-sm font-semibold text-gray-600">
                 <th className="p-3">Adresse</th>
-                <th className="p-3">N° d'allée</th>
+                <th className="p-3">N° d&#39;allée</th>
                 <th className="p-3">N° de porte</th>
                 <th className="p-3">Type</th>
                 <th className="p-3">Nom</th>
