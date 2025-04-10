@@ -1,7 +1,16 @@
 "use client"
 
 import React, { useEffect, useRef } from "react"
-import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Title, Tooltip } from "chart.js"
+import {
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  ChartOptions,
+  Legend,
+  LinearScale,
+  Title,
+  Tooltip,
+} from "chart.js"
 import { Bar } from "react-chartjs-2"
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
@@ -23,7 +32,7 @@ const BarChart: React.FC = () => {
     ],
   }
 
-  const options = {
+  const options: ChartOptions<"bar"> = {
     responsive: true,
     plugins: {
       title: {

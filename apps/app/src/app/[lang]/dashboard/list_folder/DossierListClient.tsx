@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
@@ -80,9 +80,7 @@ export default function DossierListClient() {
         </Button>
       </div>
 
-      {error && (
-        <div className="mb-4 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">{error}</div>
-      )}
+      {error && <div className="mb-4 rounded border border-red-400 bg-red-100 px-4 py-3 text-red-700">{error}</div>}
 
       <div className="mb-4 flex border-b">
         {tabs.map((tab, idx) => (

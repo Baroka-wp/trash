@@ -21,7 +21,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
     const id = params.id
     const data = await request.json()
 
-    if (typeof data !== 'object' || data === null) {
+    if (typeof data !== "object" || data === null) {
       return NextResponse.json({ error: "Données invalides" }, { status: 400 })
     }
 
