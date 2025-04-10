@@ -29,7 +29,7 @@ export default async function Home({
       <nav className="flex flex-col items-center justify-center">
         <ul className="flex flex-row items-center justify-center gap-2">
           <li>
-            <Button as={Link} href="/examples/profile" color="primary" variant="flat">
+            <Button as={Link} href={`/${lang}/sign-in`} color="primary" variant="flat">
               {dictionary.profile}
             </Button>
           </li>
