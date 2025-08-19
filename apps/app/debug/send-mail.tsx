@@ -1,8 +1,8 @@
 import readline from "node:readline/promises"
 
 import { sendMail } from "@/lib/mailer"
-import VerifyEmail, { previewProps } from "@trash/transactional/emails/verify-email"
 import { render } from "@react-email/render"
+import VerifyEmail, { previewProps } from "@trash/transactional/emails/verify-email"
 
 const main = async () => {
   const element = VerifyEmail(previewProps)

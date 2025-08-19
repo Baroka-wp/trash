@@ -120,7 +120,7 @@ export function LoginUserAuthForm({ searchParams, dictionary, ...props }: UserAu
         <Link className="ml-auto text-sm text-muted-foreground hover:text-primary" href={"/forgot-password"}>
           {dictionary.forgotPassword}
         </Link>
-        <Button type="submit" isLoading={isLoading} color="primary">
+        <Button type="submit" isLoading={isLoading} className="bg-green-500">
           {dictionary.signIn}
         </Button>
       </form>

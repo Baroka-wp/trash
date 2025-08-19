@@ -12,9 +12,9 @@ import { sendMail } from "@/lib/mailer"
 import { prisma } from "@/lib/prisma"
 import { ApiError, handleApiError } from "@/lib/utils/server-utils"
 import { apiInputFromSchema } from "@/types"
+import { render } from "@react-email/render"
 import { logger } from "@trash/lib"
 import ResetPasswordEmail from "@trash/transactional/emails/reset-password"
-import { render } from "@react-email/render"
 
 export const forgotPassword = async ({ input }: apiInputFromSchema<typeof forgotPasswordSchema>) => {
   try {

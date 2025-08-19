@@ -4,8 +4,8 @@ import { env } from "@/lib/env"
 import { prisma } from "@/lib/prisma"
 import { s3Client as _s3Client } from "@/lib/s3"
 import { DeleteObjectCommand } from "@aws-sdk/client-s3"
-import { chunk, logger } from "@trash/lib"
 import { Prisma } from "@prisma/client"
+import { chunk, logger } from "@trash/lib"
 
 const clearUnusedUploads = async () => {
   const now = new Date()

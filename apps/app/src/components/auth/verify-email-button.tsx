@@ -7,8 +7,8 @@ import { toast } from "react-toastify"
 import { useAccount } from "@/hooks/account"
 import { TDictionary } from "@/lib/langs"
 import { trpc } from "@/lib/trpc/client"
-import { logger } from "@trash/lib"
 import { Button } from "@nextui-org/button"
+import { logger } from "@trash/lib"
 
 import { VerifyEmailButtonDr } from "./verify-email-button.dr"
 
